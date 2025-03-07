@@ -53,7 +53,7 @@ This Zsh script automates the process of replacing manually installed macOS appl
 
 2. **Make the Script Executable:**
    ```bash
-   chmod +x homebrew-me.zsh
+   chmod +x homebrew-me.sh
    ```
 
 ## Usage
@@ -63,38 +63,38 @@ This Zsh script automates the process of replacing manually installed macOS appl
 Run the script with no arguments to scan applications and interactively replace them:
 
 ```bash
-./homebrew-me.zsh
+./homebrew-me.sh
 ```
 
 ### Command Line Options
 
 - **Dry Run Mode:**
   ```bash
-  ./homebrew-me.zsh --dry-run
+  ./homebrew-me.sh --dry-run
   ```
   Shows what would be done without making any changes.
 
 - **Interactive Ordering:**
   ```bash
-  ./homebrew-me.zsh --order
+  ./homebrew-me.sh --order
   ```
   Allows you to choose which apps to process first.
 
 - **Verbose Output:**
   ```bash
-  ./homebrew-me.zsh --verbose
+  ./homebrew-me.sh --verbose
   ```
   Shows more detailed information during processing.
 
 - **Help:**
   ```bash
-  ./homebrew-me.zsh --help
+  ./homebrew-me.sh --help
   ```
   Displays usage information and options.
 
 - **Combine Options:**
   ```bash
-  ./homebrew-me.zsh --dry-run --order --verbose
+  ./homebrew-me.sh --dry-run --order --verbose
   ```
 
 ### Interactive Prompts
