@@ -46,5 +46,5 @@ This Zsh script automates the process of converting manually installed macOS app
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
+   git clone https://github.com/joseph1020/HomeBrewMe.git
    cd your-repo-name
