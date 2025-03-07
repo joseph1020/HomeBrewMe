@@ -47,4 +47,4 @@ This Zsh script automates the process of converting manually installed macOS app
 
    ```bash
    git clone https://github.com/joseph1020/HomeBrewMe.git
-   cd your-repo-name
+   cd HomeBrewMe
