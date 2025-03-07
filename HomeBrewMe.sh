@@ -281,7 +281,7 @@ process_app() {
   if [ ! -d "$app_path" ]; then
     echo "Error: $app_path no longer exists. Skipping..."
     return
-  }
+  fi
   
   local app_name
   app_name=$(get_app_name "$app_path")
