@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# Local runtime / mapping data
+brew_mappings.txt
+brew_managed_apps*.txt
+mapping.txt
+
+# Development scratch / historical working copies
+temp/
+temp[0-9]*/
+*.save
