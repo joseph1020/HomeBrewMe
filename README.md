@@ -1,158 +1,61 @@
 # HomeBrewMe
 
-Convert manually installed macOS applications to Homebrew-managed casks.
+[![MIT License](https://img.shields.io/github/license/joseph1020/HomeBrewMe)](LICENSE)
+![macOS](https://img.shields.io/badge/macOS-supported-lightgrey)
+![Zsh](https://img.shields.io/badge/shell-Zsh-blue)
 
-## Overview
+HomeBrewMe helps replace manually installed macOS applications with their Homebrew cask versions. It scans `/Applications`, checks for matching casks, and lets you review each replacement. Use dry-run mode to preview actions before making changes.
 
-This Zsh script automates the process of replacing manually installed macOS applications with their Homebrew cask equivalents. It scans your `/Applications` folder, identifies apps that aren't already managed by Homebrew, compares installed versions with available Homebrew versions, and guides you through the replacement process.
+### Features
 
-## Features
+- Finds applications in `/Applications` that are not marked as Homebrew-managed.
+- Compares installed app versions with available cask versions.
+- Supports dry-run, interactive ordering, and verbose output.
+- Prompts before replacing apps and summarizes results.
 
-- **Smart Application Detection**
-  - Scans the `/Applications` folder for manually installed apps
-  - Intelligently identifies corresponding Homebrew casks
-  - Detects apps already managed by Homebrew using receipt files
+## Requirements
 
-- **Version Comparison**
-  - Extracts and compares app versions using semantic versioning rules
-  - Indicates when installed versions are newer, older, or the same as Homebrew versions
-  - Makes informed replacement recommendations based on version differences
-
-- **Flexible User Options**
-  - Dry run mode to preview changes without making modifications
-  - Interactive ordering to prioritize which apps to process first
-  - Verbose mode for detailed information about each app
-
-- **Intelligent App Handling**
-  - Gracefully quits running applications before removal
-  - Handles permissions issues with escalation to sudo when necessary
-  - Manages file-by-file removal for better security and reliability
-
-- **Comprehensive Reporting**
-  - Detailed summary of all operations performed
-  - Lists apps not found in Homebrew's cask repository
-  - Reports apps that encountered installation conflicts
-
-## Prerequisites
-
-- **Operating System:** macOS
-- **Shell:** Zsh
-- **Required Tools:**
-  - [Homebrew](https://brew.sh/)
-  - [jq](https://stedolan.github.io/jq/) (`brew install jq`)
-  - [Python 3](https://www.python.org/) (`brew install python`)
-  - `osascript` (pre-installed on macOS)
+- macOS with Zsh
+- [Homebrew](https://brew.sh/)
+- `jq`
+- Python 3
+- `osascript` (included with macOS)
 
 ## Installation
 
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/joseph1020/HomeBrewMe.git
-   cd HomeBrewMe
-   ```
-
-2. **Make the Script Executable:**
-   ```bash
-   chmod +x homebrew-me.sh
-   ```
+```sh
+git clone https://github.com/joseph1020/HomeBrewMe.git
+cd HomeBrewMe
+chmod +x HomeBrewMe.sh
+```
 
 ## Usage
 
-### Basic Usage
+Run the script and follow the prompts:
 
-Run the script with no arguments to scan applications and interactively replace them:
-
-```bash
-./homebrew-me.sh
+```sh
+./HomeBrewMe.sh
 ```
 
-### Command Line Options
+Preview without making changes, or use the other supported options:
 
-- **Dry Run Mode:**
-  ```bash
-  ./homebrew-me.sh --dry-run
-  ```
-  Shows what would be done without making any changes.
+```sh
+./HomeBrewMe.sh --dry-run
+./HomeBrewMe.sh --order
+./HomeBrewMe.sh --verbose
+./HomeBrewMe.sh --help
+```
 
-- **Interactive Ordering:**
-  ```bash
-  ./homebrew-me.sh --order
-  ```
-  Allows you to choose which apps to process first.
+Options can be combined, for example `./HomeBrewMe.sh --dry-run --order --verbose`.
 
-- **Verbose Output:**
-  ```bash
-  ./homebrew-me.sh --verbose
-  ```
-  Shows more detailed information during processing.
+## Safety and behavior
 
-- **Help:**
-  ```bash
-  ./homebrew-me.sh --help
-  ```
-  Displays usage information and options.
+The script asks before replacing each app. A replacement can quit the app, remove its existing `/Applications` bundle, and install the matching cask. Removal may request administrator access through `sudo`. `--dry-run` previews operations without carrying them out.
 
-- **Combine Options:**
-  ```bash
-  ./homebrew-me.sh --dry-run --order --verbose
-  ```
+## Limitations
 
-### Interactive Prompts
-
-For each app, you'll be prompted with the following options:
-
-- `y`: Replace this app with the Homebrew version
-- `n`: Skip this app
-- `A`: Replace all subsequent apps (yes to all)
-- `F`: Skip all subsequent apps (no to all)
-
-## How It Works
-
-1. **Discovery Phase:**
-   - Scans `/Applications` for `.app` bundles
-   - Identifies which apps are not managed by Homebrew
-
-2. **Analysis Phase:**
-   - Derives the canonical Homebrew cask name for each app
-   - Extracts and compares version information
-
-3. **Processing Phase:**
-   - Prompts for user decision based on version comparison
-   - Quits the app if it's running
-   - Removes the manually installed version
-   - Installs the Homebrew cask version
-
-4. **Summary Phase:**
-   - Reports successful replacements
-   - Lists apps not found in Homebrew
-   - Reports any installation conflicts
-
-## Advanced Features
-
-- **Version Comparison Logic:**
-  The script implements semantic version comparison to accurately compare app versions, even when they use different formatting conventions.
-
-- **Cask Name Derivation:**
-  Multiple strategies are used to derive the correct Homebrew cask name from the app name, including handling special cases like "Classic" apps.
-
-- **Permission Handling:**
-  The script tries user-level file removal first, then escalates to sudo only when necessary.
-
-## Troubleshooting
-
-- **App Not Found in Homebrew:**
-  If an app is not found, try searching for it manually with `brew search <app-name>` as it might have a different cask name.
-
-- **Installation Conflicts:**
-  For apps that encounter conflicts during installation, try installing them manually with `brew install --cask <cask-name>`.
-
-- **Permission Issues:**
-  If you encounter permission issues, ensure you have sudo privileges on your system.
-
-## Contributing
-
-Contributions are welcome! Feel free to submit issues and pull requests.
+Only applications found in `/Applications` are scanned. An app without a matching Homebrew cask cannot be replaced automatically.
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the [MIT License](LICENSE).
