@@ -1,6 +1,6 @@
 # HomeBrewMe
 
-[![MIT License](https://img.shields.io/github/license/joseph1020/HomeBrewMe)](LICENSE)
+[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 ![macOS](https://img.shields.io/badge/macOS-supported-lightgrey)
 ![Zsh](https://img.shields.io/badge/shell-Zsh-blue)
 
@@ -58,4 +58,4 @@ Only applications found in `/Applications` are scanned. An app without a matchin
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+HomeBrewMe is released under the MIT License. See [LICENSE](LICENSE).
